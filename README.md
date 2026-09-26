@@ -8,19 +8,20 @@ HTML, CSS e JavaScript puros — sem build, sem framework, sem backend. Basta ab
 
 ```
 .
-├── index.html          # Home (hero cinematográfico, pacotes, como funciona, sobre)
-├── servicos.html        # Serviços organizados em 4 grupos, com preços
-├── projetos.html         # Cases reais + Sobre + FAQ + Contato/orçamento
-├── assets/
-│   ├── css/
-│   │   └── styles.css   # Design system e estilos de todas as páginas
-│   ├── js/
-│   │   └── main.js       # Header, hero scroll-driven, reveals, FAQ, formulário
-│   └── images/
-│       ├── andrew-hero.webp / .jpg   # Foto do hero da Home
-│       └── projects/                 # Imagens dos cases (Andressa, Evy Braids, Galpão da Evy, Gustavo)
+├── index.html              # Home (hero cinematográfico, pacotes, como funciona, sobre)
+├── servicos.html           # Serviços organizados em 4 grupos, com preços
+├── projetos.html           # Cases reais + Sobre + FAQ + Contato/orçamento
+├── styles.css              # Design system e estilos de todas as páginas
+├── main.js                 # Header, hero scroll-driven, reveals, FAQ, formulário
+├── andrew-hero.webp/.jpg   # Foto do hero da Home
+├── andressa-*.webp         # Imagens do case Andressa Matos
+├── evy-*.webp              # Imagens do case Evy Braids
+├── galpao-cover.webp       # Imagem do case Galpão da Evy
+├── gustavo-*.webp          # Imagens do case Gustavo Etelvino
 └── README.md
 ```
+
+Tudo na raiz, sem subpastas — de propósito: o upload de arquivos pelo site do GitHub (Add file > Upload files) não preserva pastas aninhadas quando os arquivos são arrastados individualmente, então manter tudo num nível só evita o problema de CSS/JS/imagens não subirem.
 
 ## Design system
 
@@ -40,7 +41,7 @@ Seção `.hero` com 400vh de altura; o JS calcula o progresso do scroll dentro d
 - troca a "cena" de texto ativa entre os 4 momentos do briefing;
 - aplica um zoom (Ken Burns) sutil na foto.
 
-Não há vídeo ainda — o efeito usa a foto estática. Para trocar por um vídeo real controlado pelo scroll, troque o bloco que aplica `transform: scale()` na imagem por `video.currentTime = progress * video.duration` em `assets/js/main.js` (função `applyHeroProgress`).
+Não há vídeo ainda — o efeito usa a foto estática. Para trocar por um vídeo real controlado pelo scroll, troque o bloco que aplica `transform: scale()` na imagem por `video.currentTime = progress * video.duration` em `main.js` (função `applyHeroProgress`).
 
 No mobile (`max-width: 860px`) e com `prefers-reduced-motion: reduce`, o hero mostra direto a cena final, sem o efeito de scroll.
 
