@@ -1,45 +1,61 @@
-# Site integrado — Andrew Moura
+# Andrew | Presença Digital
+
+Site institucional de serviços digitais (sites, portfólios, identidade visual, conteúdo e tráfego pago) para profissionais autônomos e pequenos negócios.
+
+HTML, CSS e JavaScript puros — sem build, sem framework, sem backend. Basta abrir `index.html` ou publicar a pasta no GitHub Pages.
 
 ## Estrutura
 
-index.html — página principal
-planos/index.html — comparação e contratação
-assets/css/inicio.css — aparência da página principal
-assets/css/planos.css — aparência dos planos
-assets/js/servicos.js — fonte única de nomes, preços, entregas e checkouts
-assets/js/inicio.js — funcionamento da página principal
-assets/js/planos.js — funcionamento e eventos da página de planos
-assets/cases/ — imagens originais dos projetos
-assets/favicon.svg — ícone
-.nojekyll — compatibilidade com GitHub Pages
+```
+.
+├── index.html          # Home (hero cinematográfico, pacotes, como funciona, sobre)
+├── servicos.html        # Serviços organizados em 4 grupos, com preços
+├── projetos.html         # Cases reais + Sobre + FAQ + Contato/orçamento
+├── assets/
+│   ├── css/
+│   │   └── styles.css   # Design system e estilos de todas as páginas
+│   ├── js/
+│   │   └── main.js       # Header, hero scroll-driven, reveals, FAQ, formulário
+│   └── images/
+│       ├── andrew-hero.webp / .jpg   # Foto do hero da Home
+│       └── projects/                 # Imagens dos cases (Andressa, Evy Braids, Galpão da Evy, Gustavo)
+└── README.md
+```
 
-## Publicar
+## Design system
 
-1. Extraia o ZIP.
-2. Abra o repositório presencadigital, na branch usada pelo GitHub Pages.
-3. Envie o CONTEÚDO desta pasta para a raiz do repositório: index.html, planos e assets devem ficar diretamente na raiz. Não envie uma pasta externa envolvendo tudo.
-4. Salve o commit e aguarde o deploy atual do Pages.
-5. Abra https://druzinho.github.io/presencadigital/ e use o menu Planos.
+| Token | Valor |
+|---|---|
+| Fundo principal | `#0D0D0F` |
+| Fundo secundário | `#17171A` |
+| Texto principal | `#F3F1EC` |
+| Texto secundário | `#B8B8BC` |
+| Destaque (âmbar) | `#D9923B` |
+| Título | Instrument Sans |
+| Corpo | Inter |
 
-Página de planos: https://druzinho.github.io/presencadigital/planos/
+## Hero da Home
 
-O site principal foi preservado com seus projetos e visual, acrescentando acesso aos planos no menu, hero, rodapé e CTA final. Os cards da página principal agora levam aos detalhes do plano escolhido. As informações dos serviços foram sincronizadas com o escopo aprovado. A pasta original fornecida não foi alterada.
+Seção `.hero` com 400vh de altura; o JS calcula o progresso do scroll dentro dela e:
+- troca a "cena" de texto ativa entre os 4 momentos do briefing;
+- aplica um zoom (Ken Burns) sutil na foto.
 
-## Manutenção
+Não há vídeo ainda — o efeito usa a foto estática. Para trocar por um vídeo real controlado pelo scroll, troque o bloco que aplica `transform: scale()` na imagem por `video.currentTime = progress * video.duration` em `assets/js/main.js` (função `applyHeroProgress`).
 
-Para alterar um preço, entrega ou checkout, edite apenas assets/js/servicos.js. As duas páginas usam essa mesma fonte. Para editar FAQ ou textos gerais, abra o index.html da página correspondente. Não é necessário instalar programas nem executar build.
+No mobile (`max-width: 860px`) e com `prefers-reduced-motion: reduce`, o hero mostra direto a cena final, sem o efeito de scroll.
 
-Os antigos styles.css e script.js da raiz e de planos não são mais utilizados. Se já existirem no repositório, podem permanecer sem afetar a nova versão; não foram incluídos aqui. Não substitua esta entrega por um ZIP anterior.
+## Formulário de orçamento
 
-## Rastreamento e links
+O site é estático, então o formulário em `projetos.html#contato` não envia para um servidor: ao enviar, ele monta um `mailto:` para `prod.eodrew@gmail.com` já com nome, serviço e mensagem preenchidos. Para receber os pedidos direto (planilha, e-mail automático, CRM), trocar por um serviço como Formspree ou um backend próprio, mantendo os mesmos campos.
 
-Meta Pixel original preservado nas duas páginas, com o mesmo ID e PageView. O evento select_service permanece nos botões de checkout da página de planos, sem Purchase e sem evento duplicado por clique. Links internos não disparam seleção de contratação.
+Os links de "Solicitar orçamento" nos cards de `servicos.html` já passam o nome do serviço pela URL (`?servico=...`), que é lido pelo JS e preenche o campo automaticamente ao abrir a página de contato.
 
-Os três checkouts diretos foram atualizados e verificados: Criativos — https://pay.kiwify.com.br/2eJRLxK; Presença Digital Start — https://pay.kiwify.com.br/vyPE4Re; Estrutura Digital — https://pay.kiwify.com.br/u3pKCgp. Todos responderam HTTP 200 e permaneceram no respectivo endereço de pagamento, sem redirecionar para o site. Nenhuma compra foi realizada.
+## Publicação (GitHub Pages)
 
-Este pacote não foi publicado automaticamente.
+1. Subir o conteúdo desta pasta na raiz do repositório (ou branch/pasta configurada no GitHub Pages).
+2. Nenhuma etapa de build é necessária — os arquivos já são estáticos.
 
+## Contato do negócio
 
-## Atualização apenas dos links
-
-Se a versão integrada já está publicada, substitua somente assets/js/servicos.js pelo arquivo deste pacote e salve o commit. Depois do deploy, recarregue a página de planos com Ctrl+F5. Para instalação completa, siga as instruções de publicação acima.
+- Instagram: [@andrewgestortrafego](https://www.instagram.com/andrewgestortrafego/)
+- E-mail: prod.eodrew@gmail.com
